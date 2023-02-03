@@ -1,0 +1,40 @@
+import java.awt.Desktop.Action;
+import java.time.Duration;
+import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+
+public class Login2 {
+
+	public static void main(String[] args) throws InterruptedException {
+	
+			// TODO Auto-generated method stub
+			System.out.println("Hello");
+			System.setProperty("webdriver.chrome.driver","E://Automation//chromedriver.exe");
+			WebDriver driver=new ChromeDriver();
+			driver.manage().window().maximize();
+			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+			driver.get("https://qatorelease.mytransics.com/");
+			WebElement username=driver.findElement(By.xpath("//input[@placeholder='Email address']"));
+			WebElement password=driver.findElement(By.xpath("//input[@placeholder='Password']"));
+			WebElement login=driver.findElement(By.xpath("//button[@type='submit']"));
+			username.sendKeys("maheshe@cybage.com");
+			password.sendKeys("Testing@333");
+			login.click();
+			WebElement TxserviceGrid =driver.findElement(By.xpath("//div[@id=\"overlay_txservice\"]"));
+			TxserviceGrid.click();
+			Thread.sleep(3000);
+			ArrayList<String> tabs2 = new ArrayList<String> (driver.getWindowHandles());
+			driver.switchTo().window(tabs2.get(1));
+			WebElement HamburgerMenu =driver.findElement(By.xpath("//i[@class='fa fa-bars']"));
+			HamburgerMenu.click();
+			Thread.sleep(10000);
+			WebElement MyCompanies =driver.findElement(By.xpath("//i[@class='fa fa-building-o']"));
+			MyCompanies.click();
+	}
+}
